@@ -1,0 +1,213 @@
+repeat wait()
+    
+
+
+until game.StarterGui
+local guienabled = false
+local plr = game.Players.LocalPlayer
+local mouse = plr:GetMouse()
+local plrID = plr.UserId
+local mechar = game.Players.LocalPlayer.Character
+
+local function seeker()
+local map = game.Workspace.Map.Map
+local mapchildren = map:GetChildren()
+local me = game.Players.LocalPlayer
+
+local players = game.Players:GetChildren()
+local me = game.Players.LocalPlayer
+local mechar = me.Character
+wait(1)
+for i,v in pairs(players) do
+wait(.01)
+mechar.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame
+end
+end
+
+local function collectcoins()
+    local map = game.Workspace.Map.Map
+local mapchildren = map:GetChildren()
+local me = game.Players.LocalPlayer
+for i,v in pairs(game.Workspace.GameObjects:GetChildren()) do
+if v.Name == "Credit" then
+wait(.15)
+me.Character.HumanoidRootPart.CFrame = v.CFrame
+end
+end
+end
+local function ESP()
+    local players = game.Players:GetChildren()
+    for i,v in pairs(players)do
+wait(.05)
+    local billboard = Instance.new("BillboardGui",v.Character.Head)
+billboard.Size = UDim2.new (0,200,0,50)
+billboard.ExtentsOffset = Vector3.new(0,2.5,0)
+billboard.AlwaysOnTop = true
+wait(.01)
+    local textbox = Instance.new ("TextBox",billboard)
+    textbox.Size = UDim2.new (0, 200,0, 50)
+    textbox.Name = "textbox"
+    wait(.01)
+    textbox.TextColor3 = Color3.fromRGB(0,0,255)
+    textbox.TextSize = 20
+    textbox.BackgroundTransparency = 1
+if v.PlayerData.It.Value == true then 
+textbox.Text = "It"
+textbox.TextColor3 = Color3.fromRGB(255,0,0)
+else
+textbox.Text = "Hider"
+end
+end
+end
+
+game.Players.LocalPlayer.PlayerScripts.ChatScript.AddChatMessage:Fire("Thank You For Choosing OP GUI! Press Right Control To Open!")
+game.Players.LocalPlayer.PlayerScripts.ChatScript.AddChatMessage:Fire("This exploit has been created by Plieax")
+game.Players.LocalPlayer.PlayerScripts.ChatScript.AddChatMessage:Fire(" V:(1.1.1)")
+
+local newgui = Instance.new("ScreenGui",plr.PlayerGui)
+newgui.Name = "NewHack"
+newgui.Enabled = false
+
+local MainFrame = Instance.new("Frame",newgui)
+MainFrame.Size = UDim2.new(.5,0,.5,0)
+MainFrame.Position = UDim2.new()
+MainFrame.Name = "MainFrame"
+MainFrame.Position = UDim2.new(.25,0,.25,0)
+MainFrame.BackgroundColor3 = Color3.fromRGB(16, 42, 220)
+MainFrame.BorderSizePixel = 10
+MainFrame.BorderColor3 = Color3.fromRGB(0, 32, 96)
+
+mouse.KeyDown:Connect(function(key)
+if key == "1" then
+if guienabled == false then
+    newgui.Enabled = true
+    guienabled = true
+elseif guienabled == true then
+    newgui.Enabled = false
+    guienabled = false
+end
+end
+end)
+
+--/Button1
+local button1 = Instance.new("TextButton",MainFrame)
+button1.Size = UDim2.new(.25,0,.25,0)
+button1.BackgroundColor3 = Color3.fromRGB(170,0,170)
+button1.TextColor3 = Color3.fromRGB(0,255,255)
+button1.TextScaled = true
+button1.Text = "TP To All"
+button1.Activated:Connect(function()
+    seeker()
+end)
+
+
+--/Button2
+local button2 = Instance.new("TextButton",MainFrame)
+button2.Size = UDim2.new(.25,0,.25,0)
+button2.BackgroundColor3 = Color3.fromRGB(170,0,170)
+button2.TextColor3 = Color3.fromRGB(0,255,255)
+button2.TextScaled = true
+button2.Text = "Collect All Coins"
+button2.Position = UDim2.new(.25,0,0,0)
+button2.Activated:Connect(function()
+    collectcoins()
+end)
+
+local button3 = Instance.new("TextButton",MainFrame)
+button3.Size = UDim2.new(.25,0,.25,0)
+button3.BackgroundColor3 = Color3.fromRGB(170,0,170)
+button3.TextColor3 = Color3.fromRGB(0,255,255)
+button3.TextScaled = true
+button3.Text = "Speed And Jump Boost"
+button3.Position = UDim2.new(.5,0,0,0)
+button3.Activated:Connect(function()
+game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 100
+game.Players.LocalPlayer.Character.Humanoid.JumpPower = 250
+end)
+
+local button4 = Instance.new("TextButton",MainFrame)
+button4.Size = UDim2.new(.25,0,.25,0)
+button4.BackgroundColor3 = Color3.fromRGB(170,0,170)
+button4.TextColor3 = Color3.fromRGB(0,255,255)
+button4.TextScaled = true
+button4.Text = "ESP"
+button4.Position = UDim2.new(.75,0,0,0)
+button4.Activated:Connect(function()
+    ESP()
+end)
+
+local function spamchat(s)
+    game.Players.LocalPlayer.PlayerScripts.ChatScript.AddChatMessage:Fire(s)
+    game.ReplicatedStorage.Remotes.Chatted:FireServer(s)
+end
+
+local tb1 = Instance.new("TextBox",MainFrame)
+tb1.Size = UDim2.new(.5,0,.25,0)
+tb1.BackgroundColor3 = Color3.fromRGB(170,0,170)
+tb1.TextColor3 = Color3.fromRGB(0,255,255)
+tb1.TextScaled = true
+tb1.Position = UDim2.new(.25,0,0.4,0)
+tb1.Text = "Type Message Here"
+tb1.MultiLine = true
+
+local button5 = Instance.new("TextButton",MainFrame)
+button5.Size = UDim2.new(.25,0,.25,0)
+button5.BackgroundColor3 = Color3.fromRGB(170,0,170)
+button5.TextColor3 = Color3.fromRGB(0,255,255)
+button5.TextScaled = true
+button5.Text = "Spam Chat"
+button5.Position = UDim2.new(.37,0,0.7,0)
+button5.Activated:Connect(function()
+    spamchat(tb1.Text)
+end)
+
+
+
+
+
+
+
+local oof = [[
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+]]
+
+
+
+
+local button6 = Instance.new("TextButton",MainFrame)
+button6.Size = UDim2.new(.25,0,.25,0)
+button6.BackgroundColor3 = Color3.fromRGB(170,0,170)
+button6.TextColor3 = Color3.fromRGB(0,255,255)
+button6.TextScaled = true
+button6.Text = "Clear Chat"
+button6.Position = UDim2.new(.67,0,0.7,0)
+button6.Activated:Connect(function()
+        game.Players.LocalPlayer.PlayerScripts.ChatScript.AddChatMessage:Fire(oof)
+    game.ReplicatedStorage.Remotes.Chatted:FireServer(oof)
+end)
+
+for i,v in pairs(newgui:GetChildren())do
+    wait(.01)
+    if v:IsA("TextButton")or v:IsA("TextBox") or v:IsA("TextLabel") then
+        v.BorderSizePixel = 0
+        end
+    end
